@@ -24,3 +24,7 @@ def gamma_correction(gray: np.ndarray, gamma: float) -> np.ndarray:
 def negative(gray: np.ndarray) -> np.ndarray:
     gray = ensure_uint8(gray)
     return 255 - gray
+
+def threshold_binary(gray: np.ndarray, t: int) -> np.ndarray:
+    gray = ensure_uint8(gray)
+    return gray
