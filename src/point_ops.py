@@ -25,6 +25,8 @@ def negative(gray: np.ndarray) -> np.ndarray:
     gray = ensure_uint8(gray)
     return 255 - gray
 
+# Fungsi untuk mengubah gambar ke biner (hitam putih) berdasarkan nilai threshold t
 def threshold_binary(gray: np.ndarray, t: int) -> np.ndarray:
     gray = ensure_uint8(gray)
-    return gray
+    _, out = cv2.threshold(gray, int(t), 255, cv2.THRESH_BINARY)
+    return out
