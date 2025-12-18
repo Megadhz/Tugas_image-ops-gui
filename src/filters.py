@@ -14,3 +14,24 @@ def _odd(k: int) -> int:
     # Jika k sudah ganjil, kembalikan
     # Jika genap, tambahkan 1 agar menjadi ganjil
     return k if k % 2 == 1 else k + 1
+
+def box_blur(gray, ksize):
+
+    # Pastikan gambar bertipe uint8
+    gray = ensure_uint8(gray)
+
+    # Pastikan ukuran kernel ganjil dan minimal 1
+    k = _odd(ksize)
+
+    # Blur dengan metode rata-rata
+    return cv2.blur(gray, (k, k))
+
+def gaussian_blur(gray, ksize, sigma):
+    # Pastikan gambar bertipe uint8
+    gray = ensure_uint8(gray)
+
+    # Pastikan ukuran kernel ganjil dan minimal 1
+    k = _odd(ksize)
+
+    # Blur dengan distribusi Gaussian
+    return cv2.GaussianBlur(gray, (k, k), float(sigma))
