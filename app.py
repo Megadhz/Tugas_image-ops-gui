@@ -32,3 +32,29 @@ with st.sidebar:
     use_negative = st.checkbox("Negative", False)
     use_thr = st.checkbox("Threshold", False)
     thr = st.slider("T", 0, 255, 128, 1, disabled=not use_thr)
+
+with st.sidebar:
+    st.header("Filters")
+    
+    # Menu dropdown untuk memilih jenis filter/kernel
+    f = st.selectbox(
+        "Pilih filter",
+        ["None","Box Blur","Gaussian Blur","Sharpen","Edge","Emboss","Custom 4-neighbor"]
+    )
+    
+    # Ukuran kernel (harus ganjil), aktif hanya untuk filter Blur
+    ksize = st.slider("Kernel size (odd)", 1, 31, 3, 2, disabled=f not in ["Box Blur","Gaussian Blur"])
+    
+    # Parameter standar deviasi, aktif khusus untuk Gaussian Blur
+    sigma = st.slider("Sigma", 0.0, 10.0, 0.0, 0.1, disabled=f != "Gaussian Blur")
+
+# Membuat 3 tab utama: untuk tampilan gambar, grafik histogram, dan simpan file
+tab1, tab2, tab3 = st.tabs(["Preview", "Histogram", "Export"])
+
+with tab1:
+    # Mengatur layout 2 kolom di dalam tab Preview
+    c1, c2 = st.columns(2, gap="large")
+    with c1:
+        st.subheader("Original")   # Judul kolom kiri
+    with c2:
+        st.subheader("Processed")  # Judul kolom kanan
