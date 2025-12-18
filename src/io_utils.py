@@ -16,3 +16,12 @@ def read_upload_to_bgr(uploaded_file) -> np.ndarray:
 
     # Mengembalikan gambar dalam bentuk NumPy array (BGR)
     return img
+
+def to_gray(img_bgr: np.ndarray) -> np.ndarray:
+    # Jika jumlah dimensi = 2, berarti gambar sudah grayscale
+    if img_bgr.ndim == 2:
+        return img_bgr
+
+    # Jika gambar masih berwarna (BGR),
+    # konversi menjadi grayscale
+    return cv2.cvtColor(img_bgr, cv2.COLOR_BGR2GRAY)
