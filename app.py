@@ -19,3 +19,16 @@ with c1:
 with c2:
     st.subheader("Processed")
 
+# Panel kontrol di sidebar
+with st.sidebar:
+    st.header("Point Operations")
+    
+    # Pengaturan dasar citra
+    alpha = st.slider("Alpha (kontras)", 0.0, 3.0, 1.0, 0.05)
+    beta  = st.slider("Beta (brightness)", -150, 150, 0, 1)
+    gamma = st.slider("Gamma", 0.1, 5.0, 1.0, 0.05)
+
+    # Opsi transformasi warna & biner
+    use_negative = st.checkbox("Negative", False)
+    use_thr = st.checkbox("Threshold", False)
+    thr = st.slider("T", 0, 255, 128, 1, disabled=not use_thr)
