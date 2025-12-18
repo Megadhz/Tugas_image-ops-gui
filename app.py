@@ -78,13 +78,20 @@ with tab1:
         st.image(out, channels="GRAY", clamp=True)
 
 with tab2:
+    # Hitung data histogram
     h1 = hist_gray(gray)
     h2 = hist_gray(out)
+    
+    # Setup plot matplotlib
     fig = plt.figure(figsize=(10, 4))
     plt.plot(h1, label="Original")
     plt.plot(h2, label="Processed")
+    
+    # Atur tampilan grafik
     plt.xlim(0, 255)
     plt.legend()
+    
+    # Render ke Streamlit
     st.pyplot(fig, clear_figure=True)
 
 with tab3:
