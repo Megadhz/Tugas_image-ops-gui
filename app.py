@@ -1,4 +1,6 @@
 import streamlit as st
+import matplotlib.pyplot as plt
+from src.histogram import hist_gray
 from src.io_utils import read_upload_to_bgr, to_gray
 from src.point_ops import brightness_contrast, gamma_correction, negative, threshold_binary
 from src.filters import box_blur, gaussian_blur, sharpen, edge_8, emboss, custom_4_neighbor
@@ -76,7 +78,14 @@ with tab1:
         st.image(out, channels="GRAY", clamp=True)
 
 with tab2:
-    st.write("Fitur Histogram akan muncul di sini.")
+    h1 = hist_gray(gray)
+    h2 = hist_gray(out)
+    fig = plt.figure(figsize=(10, 4))
+    plt.plot(h1, label="Original")
+    plt.plot(h2, label="Processed")
+    plt.xlim(0, 255)
+    plt.legend()
+    st.pyplot(fig, clear_figure=True)
 
 with tab3:
     st.write("Fitur Export/Simpan akan muncul di sini.")
