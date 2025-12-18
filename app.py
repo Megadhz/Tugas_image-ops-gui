@@ -9,3 +9,9 @@ if not up:
     st.stop()
 
 st.success("Upload OK. Fitur menyusul.")
+
+c1, c2 = st.columns(2, gap="large")
+with c1:
+    st.subheader("Original")
+with c2:
+    st.subheader("Processed")
