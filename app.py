@@ -4,6 +4,7 @@ from src.histogram import hist_gray
 from src.io_utils import read_upload_to_bgr, to_gray
 from src.point_ops import brightness_contrast, gamma_correction, negative, threshold_binary
 from src.filters import box_blur, gaussian_blur, sharpen, edge_8, emboss, custom_4_neighbor
+from src.export_utils import encode_png
 
 # Setup dasar aplikasi
 st.set_page_config(page_title="GUI Operasi & Filter", layout="wide")
@@ -95,4 +96,17 @@ with tab2:
     st.pyplot(fig, clear_figure=True)
 
 with tab3:
-    st.write("Fitur Export/Simpan akan muncul di sini.")
+    # Siapkan antarmuka unduhan
+    st.subheader("Unduh hasil")
+    
+    # Konversi array gambar ke format file bytes
+    png_bytes = encode_png(out)
+    
+    # Tombol untuk mengunduh file ke lokal
+    st.download_button(
+        "Download hasil (PNG)",
+        data=png_bytes,
+        file_name="processed.png",
+        mime="image/png"
+    )
+
